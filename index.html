@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="main.css">	
+	<title>SHOP</title>
+</head>
+<body>
+	<div class="head">
+		<div class="main">
+			<div class="main1">
+				<div class="main2">
+					<div class="main3">
+						<h4 id = 'firsth4'>IPhone 12 Pro  </h4>
+						<h4 id="firstusd"> 1200USD</h4>
+					</div>
+					<p>6 GB RAM, Memory 128 GB, double front back camera</p>
+					<button onclick="first()"><b> + ADD TO BACKET</b></button>
+				</div>
+			</div>
+			<div class="main1">
+				<div class="main2">
+					<div class="main3">
+						<h4 id="secondh4">XIAMOR REDMI NOTE 8  </h4>
+						<h4 id="secondusd">250 USD</h4>
+					</div>
+					<p>6 GB RAM, Memory 64 GB, 3 cameras in back</p>
+					<button onclick="second()"><b> + ADD TO BACKET</b></button>
+				</div>
+			</div>
+			<div class="main1">
+				<div class="main2">
+					<div class="main3">
+						<h4 id="thirdh4">ASUS Tuf Gaming Pro </h4>
+						<h4 id="thirdusd">1500 USD</h4>
+					</div>
+					<p>24 GB RAM, SSD 1 TB, RX Radeon</p>
+					<button onclick="third()"><b> + ADD TO BACKET</b></button>
+				</div>
+			</div>
+			<div class="main1">
+				<div class="main2">
+					<div class="main3">
+						<h4 id="fourthh4">Samsung Galaxy Note 13 </h4>
+						<h4 id="fourthusd">999 USD</h4>
+					</div>
+					<p>4 GB RAM, Memory 256 GB, front-back cameras</p>
+					<button onclick="fourth()"><b> + ADD TO BACKET</b></button>
+				</div>
+			</div>
+		</div>
+	</div>
+ 	<div class="head2">
+        <table>
+            <thead>
+                <tr>
+                    <th class="name">NAME</th>
+                    <th class="price">PRICE</th>
+                    <th class="remove">REMOVE</th>
+                </tr>
+            </thead>
+            <tbody id="placeforname">
+               
+            </tbody>
+        </table>
+    </div>
+	<script>
+		if(localStorage.setItem('selectedItems', obj) != null){
+			items = JSON.parse(localStorage.user);
+
+			11 1
+
+		}
+		let items = [];
+		function first(){
+			let fh4 = document.getElementById('firsth4');
+			let fvalue = fh4.innerText;
+			let usd1 = document.getElementById('firstusd');
+			let usd1value = usd1.innerText;
+			items.push({name: fvalue, price: usd1value});
+			order();
+		}
+		function second(){
+			let sh4 = document.getElementById('secondh4');
+			let svalue = sh4.innerText;
+			let usd2 = document.getElementById('secondusd');
+			let usd2value = usd2.innerText;
+			items.push({name:svalue, price: usd2value});
+			order();
+
+		}
+		function third(){
+			let th4 = document.getElementById('thirdh4');
+			let tvalue = th4.innerText;
+			let usd3 = document.getElementById('thirdusd');
+			let usd3value = usd3.innerText;
+			items.push({name:tvalue, price:usd3value});
+			order();
+		}
+		function fourth(){
+			let oh4 = document.getElementById('fourthh4');
+			let ovalue = oh4.innerText;
+			let usd4 = document.getElementById('fourthusd');
+			let usd4value = usd4.innerText;
+			items.push({name:ovalue, price:usd4value});
+			order();
+		}
+		function remove(index){
+			items.splice(index, 1);
+			order();
+
+		}
+		function order(){
+			let place = document.getElementById('placeforname');
+			place.innerHTML = '';
+			items.forEach(function(item, index){
+				let row = document.createElement('tr');
+				let name = document.createElement('td');
+				let price = document.createElement('td');
+				let butt = document.createElement('button');
+				butt.className ='but';
+				butt.innerHTML = 'REMOVE';
+				butt.onclick= function(){
+					remove(index);
+				}
+				name.innerText = item.name;
+				price.innerText = item.price;
+
+				row.appendChild(name);
+				row.appendChild(price);
+				row.appendChild(butt);
+
+				place.appendChild(row);
+			});
+
+			let obj = JSON.stringify(items);
+			localStorage.setItem('selectedItems', obj);
+			localStorage.user = obj;	
+		}
+
+	</script>
+</body>
+</html>
